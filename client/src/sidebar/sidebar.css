@@ -1,0 +1,81 @@
+.sidebar {
+    width: 15%;
+    height: 800px;
+    border-radius: 20px;
+    background-color: #242526;
+    display: block;
+    transition: 0.3s;
+}
+
+.image-and-name {
+    margin-top: 30px;
+    margin-left: 15px;
+    display: flex;
+}
+
+.image-and-name .image img {
+    margin-top: 10px;
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+.image-and-name .name {
+    margin-left: 15px;
+    font-size: 15px;
+    color: white;
+}
+
+
+.sidebar .buttons {
+    margin-top: 100px;
+    display: block;
+}
+
+.sidebar .buttons .button:hover {
+    background-color: #343434;
+    border-right: 2px solid #39FF14;
+}
+
+.sidebar .buttons .button {
+    padding: 10px;
+    cursor: pointer;
+    padding-left: 20px;
+    display: flex;
+    height: 50px;
+}
+
+.sidebar .buttons .button p {
+    text-align: center;
+    margin-left: 20px;
+    color: white;
+} 
+
+
+.signout {
+    margin-top: 175px;
+    padding-left: 40px;
+    color: white;
+    display: flex;
+    cursor: pointer;
+}
+
+
+.signout  p {
+    margin-left: 20px;
+    text-align: center;
+}
+
+ @media screen and (max-width: 1200px) {
+    .sidebar {
+        width: 0;
+        height: 100%;
+        z-index: 1;
+        position: fixed;
+        overflow-x: hidden; 
+    }
+    .image-and-name {
+        display: block;
+    }
+
+  } 

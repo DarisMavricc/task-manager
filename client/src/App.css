@@ -1,0 +1,29 @@
+body {
+  background-color: #1C1C1C;
+}
+
+.more button {
+  background-color: #343434;
+  border: 2px solid black;
+  height: 50px;
+  z-index: 2;
+  position: fixed;
+  display: none;
+  cursor: pointer;
+  border: 0;
+}
+
+.App {
+  display: flex;
+  margin: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+  .App {
+    margin: 0;
+  }
+  .more button {
+    display: block;
+  }
+
+}

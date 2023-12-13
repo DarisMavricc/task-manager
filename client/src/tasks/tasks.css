@@ -1,0 +1,101 @@
+.tasks {
+    height: 800px;
+    width: 80%;
+    margin-left: 50px;
+    border-radius: 20px;
+    background-color: #242526;
+    padding-left: 10px;
+}
+
+.tasks .create-task {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tasks .create-task h1 {
+    width: 200px;
+    padding-bottom: 10px;
+    font-size: 40px;
+    color: white;
+    border-bottom: 4px solid #39FF14;
+    margin-bottom: 15px;
+}
+
+.tasks .create-task button {
+    border-radius: 50px;
+    background-color: #343434;
+    border: 1px solid gray;
+    height: 70px;
+    font-size: 50px;
+    color: gray;
+    width: 70px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+
+.tasks .all-tasks {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tasks .all-tasks .task{
+    height: 250px;
+    background-color: #343434;
+    padding: 20px;
+    width: 300px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.tasks .all-tasks .task h1 {
+    color: white;
+}
+
+.tasks .all-tasks .task p {
+    color: white;
+}
+
+.tasks .all-tasks .task .date {
+    margin-top: 60px;
+}
+
+
+.tasks .all-tasks .task .buttons .complete{
+    padding: 10px;
+    width: 150px;
+    border-radius: 20px;
+    border: 0;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.tasks .all-tasks .task .buttons .delete,.edit {
+    float: right;
+    border: 0;
+    background-color: #343434;
+    font-size: 40px;
+    color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    .tasks {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .tasks .all-tasks .task .buttons .complete {
+        width: 110px;
+    }
+
+    .tasks .all-tasks .task {
+        margin: auto;
+        margin-bottom: 10px;
+    }
+  }
