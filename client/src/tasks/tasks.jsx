@@ -3,11 +3,25 @@ import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 
 export const Tasks = () => {
+
+    const addTask = () => {
+        document.querySelector('.new-task').style.display = 'block';
+
+    }
+
+    const closeTask = () => {
+        document.querySelector('.new-task').style.display = 'none';
+    }
+
+    async function createTask(){
+        console.log('createed');
+    }
+
     return (
         <div className="tasks">
             <div className="create-task">
                 <h1>All Tasks</h1>
-                <button>+</button>
+                <button onClick={addTask}>+</button>
             </div>
             <div className="all-tasks">
                 <div className="task">
@@ -70,7 +84,29 @@ export const Tasks = () => {
                         <button className='edit'><CiEdit/></button>
                     </div>
                 </div>
-
+            </div>
+            <div className="new-task">
+                <div className="task-elements">
+                    <button class="closeTask" onClick={closeTask}>X</button>
+                    <h1>Create a task</h1>
+                    <label for="Title">Title</label>
+                    <input type="text" placeholder='Tittle of your task'/>
+                    <label for="Description">Description</label>
+                    <textarea class="description" placeholder='Write some description about your task'/>
+                    <label for="Date">Date</label>
+                    <input type="date"/>
+                    <div className="toggle">
+                        <div className="toggle-completed">
+                            <p>Toggle Completed</p>
+                            <input type="checkbox" onChange={(e) => console.log(e.target.checked)}/>
+                        </div>
+                        <div className="toggle-important">
+                            <p>Toggle Important</p>
+                            <input type="checkbox" onChange={(e) => console.log(e.target.checked)}/>
+                        </div>
+                    </div>
+                    <button class="create-task-btn" onClick={(e) => createTask()}>+ Create Task</button>
+                </div>
             </div>
         </div>
     )

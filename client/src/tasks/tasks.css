@@ -43,7 +43,7 @@
 
 .tasks .all-tasks .task{
     height: 250px;
-    background-color: #343434;
+    background-color:  #343434;
     padding: 20px;
     width: 300px;
     border-radius: 20px;
@@ -82,6 +82,98 @@
     font-size: 40px;
     color: white;
 }
+
+.new-task {
+    display: none;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%; /* Full width */
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%); 
+
+}
+
+.new-task .task-elements{
+    border-radius: 10px;
+    color: white;
+    background-color: #242526;
+    padding: 20px 30px 30px 30px;
+    width: 500px;
+    height: 700px;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.new-task .task-elements input[type="date"],input[type="text"],textarea{
+    height: 60px;
+    background-color: black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 100% !important;
+    border: 0;
+    padding: 5px;
+}
+
+::-webkit-datetime-edit-text { color:white}
+::-webkit-datetime-edit-month-field { color:white }
+::-webkit-datetime-edit-day-field { color:white }
+::-webkit-datetime-edit-year-field { color:white }
+::-webkit-calendar-picker-indicator{ 
+  background-image: url(http://icons.iconarchive.com/icons/dakirby309/simply-styled/256/Calendar-icon.png);
+       background-size:20px 20px;
+       background-repeat:no-repeat;
+      color:rgba(204,204,204,0);
+}
+
+.new-task .task-elements .description {
+    height: 125px;
+    padding: 5px;
+    resize: none;
+}
+
+.new-task .task-elements label {
+    font-size: 20px;
+}
+
+.new-task .task-elements .toggle {
+    display: block;
+}
+
+.new-task .task-elements .toggle .toggle-completed,.toggle-important {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-task .task-elements .create-task-btn {
+    background-color: #0E87CC;
+    border: 0;
+    padding: 20px;
+    width: 170px;
+    margin-top: 10px;
+    color: white;
+    font-size: 20px;
+    float: right;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.new-task .task-elements .closeTask {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 50px;
+    float: right;
+    cursor: pointer;
+}
+
+
+
 
 @media screen and (max-width: 1200px) {
     .tasks {
