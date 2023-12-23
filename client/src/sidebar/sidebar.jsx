@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa";
 import { CiCircleAlert } from "react-icons/ci";
 import { MdAssignment } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
     return (
@@ -18,27 +19,27 @@ export const Sidebar = () => {
                 </div>
             </div>
             <div className="buttons">
-                <div className="button">
+                <a href="/"><div className="button">
                     <IoIosHome style={{width: '50px',height: '50px',color: "white"}}/>
                     <p>All Tasks</p>
-                </div> 
-                <div className="button">
+                </div></a>
+                <a href="/completed"><div className="button">
                     <FaCheck style={{width: '50px',height: '50px',color: "white"}}/>
                     <p>Completed</p>
-                </div> 
-                <div className="button">
+                </div></a>
+                <a href="/important"><div className="button">
                     <CiCircleAlert style={{width: '50px',height: '50px',color: "white"}}/>
                     <p>Important</p>
-                </div> 
-                <div className="button">
+                </div></a> 
+                <a href="/incomplete"><div className="button">
                     <MdAssignment style={{width: '50px',height: '50px',color: "white"}}/>
                     <p>Do it now</p>
-                </div>
+                </div></a>
             </div>
-            <div className="signout">
+            <a href="/logout"><div className="signout">
                 <FaSignOutAlt style={{width: '50px',height: '50px',color: "white"}}/>
                 <p>Sign Out</p>
-            </div>
+            </div></a>
         </div>
     )
 }
