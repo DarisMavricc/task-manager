@@ -1,6 +1,10 @@
+.page {
+    display: flex;
+}
+
 .tasks {
     height: 800px;
-    width: 85%;
+    width: 1500px; /* change later */
     margin-left: 50px;
     border-radius: 20px;
     background-color: #242526;

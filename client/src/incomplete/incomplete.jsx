@@ -2,6 +2,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { ImCheckboxChecked } from "react-icons/im";
 import { TiDelete } from "react-icons/ti";
+import { Sidebar } from "../sidebar/sidebar";
 
 export const Incomplete = () => {
     const addTask = () => {
@@ -27,9 +28,11 @@ export const Incomplete = () => {
     }
 
     return (
+        <div className="page">
+            <Sidebar />
         <div className="tasks">
             <div className="create-task">
-                <h1>Incompleted Tasks</h1>
+                <h1>All Tasks</h1>
                 <button onClick={addTask}>+</button>
             </div>
             <div className="all-tasks">
@@ -40,6 +43,26 @@ export const Incomplete = () => {
                     <div className="buttons">
                         <button className='complete'>Complete</button>
                         <button className='delete'><MdDelete/></button>
+                        <button className='edit'><CiEdit/></button>
+                    </div>
+                </div>
+                <div className="task">
+                    <h1>Hello World</h1>
+                    <p>Hello World here</p>
+                    <p className='date'>12/3/2023</p>
+                    <div className="buttons">
+                        <button className='complete'>Complete</button>
+                        <button className='delete'><MdDelete/></button>
+                        <button className='edit'><CiEdit/></button>
+                    </div>
+                </div>
+                <div className="task">
+                    <h1>Hello World</h1>
+                    <p>Hello World here</p>
+                    <p className='date'>12/3/2023</p>
+                    <div className="buttons">
+                        <button className='complete' onClick={(e) => CompleteTask(e)}>Complete</button>
+                        <button className='delete' onClick={(e) => DeleteTask(e)}><MdDelete/></button>
                         <button className='edit'><CiEdit/></button>
                     </div>
                 </div>
@@ -79,6 +102,7 @@ export const Incomplete = () => {
                 <TiDelete style={{color: 'red',width: '20',height: '20',padding: '15'}}/>
                 <p>Task Deleted</p>
             </div>
+        </div>
         </div>
     )
 }

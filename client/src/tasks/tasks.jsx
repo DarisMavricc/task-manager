@@ -3,6 +3,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { ImCheckboxChecked } from "react-icons/im";
 import { TiDelete } from "react-icons/ti";
+import { Sidebar } from '../sidebar/sidebar';
 
 export const Tasks = () => {
 
@@ -29,6 +30,8 @@ export const Tasks = () => {
     }
 
     return (
+        <div className="page">
+            <Sidebar />
         <div className="tasks">
             <div className="create-task">
                 <h1>All Tasks</h1>
@@ -131,6 +134,7 @@ export const Tasks = () => {
                 <TiDelete style={{color: 'red',width: '20',height: '20',padding: '15'}}/>
                 <p>Task Deleted</p>
             </div>
+        </div>
         </div>
     )
 }
