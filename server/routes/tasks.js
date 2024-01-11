@@ -23,3 +23,9 @@ export const addTask = async(req,res) => {
 export const deleteTask = (req,res) => {
     
 } 
+
+export const getTasks = async(req,res) => {
+    const {email} = req.body;
+    const tasks = await Task.find({email});
+    res.status(200).json(tasks);
+} 
