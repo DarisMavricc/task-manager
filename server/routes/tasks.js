@@ -13,9 +13,9 @@ export const addTask = async(req,res) => {
             completed,
         })
         if(task){
-            res.status(200).json('Beton');
+            res.status(200).json('Task added!');
         } else {
-            res.status(401).json('Ne valja');
+            res.status(401).json('Not work');
         }
     }
 } 

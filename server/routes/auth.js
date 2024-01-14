@@ -4,16 +4,17 @@ import bcrypt from "bcrypt";
 
 export const login = async(req,res) => {
     const {email,password} = req.body;
-    if(email,password) {
-        const user = await User.find({email});
+    if(email && password) {
+        const user = await User.findOne({email});
         if(user){
-            bcrypt.compare(password,user[0].password, function(err,exist) {
+            bcrypt.compare(password,user.password, function(err,exist) {
                 if(exist){
                     const data = {
-                        email: user[0].email,
+                        email: user.email,
                     }
                     const token =  jwt.sign(data,'secret',{expiresIn: '1hr'});
-                    res.cookie('accessToken',token).status(200).json('Logged in');
+                    res.cookie("accessToken",token);
+                    res.status(200).json(data);
                 } else {
                     res.status(401).json('Email or Password is Incorrect!');
                 }
