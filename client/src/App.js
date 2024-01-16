@@ -9,6 +9,7 @@ import {Incomplete} from './incomplete/incomplete'
 import { Logout } from './logout/logout';
 import { Login } from './login/login';
 import { Register } from './register/register';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
   const ShowMore = () => {
@@ -20,23 +21,28 @@ function App() {
       }
       
   }
+
+  const queryClient = new QueryClient();
+
   return (
     <div class="App">
       <div className="more">
                 <button onClick={ShowMore}><MdMoreHoriz style={{height:'50',width:'50',color:'white'}}/></button>
       </div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Tasks />}/>
-            <Route index element={<Tasks />} />
-            <Route path="important" element={<Important />} />
-            <Route path="completed" element={<Completed />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="incomplete" element={<Incomplete />} />
-            <Route path="logout" element={<Logout />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Tasks />}/>
+              <Route index element={<Tasks />} />
+              <Route path="important" element={<Important />} />
+              <Route path="completed" element={<Completed />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="incomplete" element={<Incomplete />} />
+              <Route path="logout" element={<Logout />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
 
     </div>
   )
