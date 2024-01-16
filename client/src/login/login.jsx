@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useFormik} from 'formik'
+import axios from 'axios'
 import * as Yup from "yup";
 import './login.css';
+import  { AuthContext } from '../context/Auth.js'
 
 
 
@@ -11,6 +13,21 @@ export const Login = () => {
 
 
     const [err,setErr] = useState('');
+
+    const navigate = useNavigate();
+
+    const {currentUser} = useContext(AuthContext);
+
+    const {login} = useContext(AuthContext);
+
+
+    useEffect(() => {
+        if(currentUser) {
+            navigate('/')
+        } else {
+            navigate('/login');
+        }
+    },[])
 
 
 
@@ -31,7 +48,8 @@ export const Login = () => {
                 password: formik.values.password
             };
             try {
-                console.log(data);
+                await login(data);
+                navigate('/');
               } catch (err) {
                 setErr(err.response.data)
             }

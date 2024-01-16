@@ -4,17 +4,33 @@ import {useFormik} from 'formik'
 import * as Yup from "yup";
 import axios from 'axios'
 import "./register.css"
+import { AuthContext } from "../context/Auth";
 
 export const Register = () => {
 
 
     const [err,setErr] = useState('');
 
+    const navigate = useNavigate();
+
+    const {currentUser} = useContext(AuthContext);
+
+    const {register} = useContext(AuthContext);
+
+
+    useEffect(() => {
+        if(currentUser) {
+            navigate('/')
+        } else {
+            navigate('/register');
+        }
+    },[])
+
 
     const formik = useFormik({
         initialValues: {
-          fname: "",
-          lname: "",
+          first_name: "",
+          last_name: "",
           email: "",
           password: "",
         },
@@ -28,13 +44,14 @@ export const Register = () => {
     
         onSubmit: async () => {
             const data = {
-                fname: formik.values.fname,
-                lname: formik.values.lname,
+                first_name: formik.values.fname,
+                last_name: formik.values.lname,
                 email: formik.values.email,
                 password: formik.values.password
             };
             try {
-                console.log(data);
+                await register(data);
+                navigate('/');
               } catch (err) {
                 setErr(err.response.data);
             }
