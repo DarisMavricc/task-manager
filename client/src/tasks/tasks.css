@@ -104,6 +104,17 @@
     cursor: pointer;
 }
 
+.tasks .all-tasks .task .buttons .incomplete{
+    padding: 10px;
+    width: 150px;
+    border-radius: 20px;
+    border: 0;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 
 .tasks .all-tasks .task .buttons .delete,.edit {
     float: right;
@@ -137,7 +148,7 @@
     background-color: #242526;
     padding: 20px 30px 30px 30px;
     width: 500px;
-    height: 700px;
+    height: 750px;
     margin: auto;
     margin-top: 5%;
 }
@@ -212,13 +223,12 @@
 }
 
 .tasks .alert {
-    display: none !important;
+    display: none;
     background-color: white;
     border: 0;
     width: 175px;
     height: 50px;
     color: black;
-    display: flex;
     border-radius: 10px;
     z-index: 1;
     position: fixed;
@@ -232,13 +242,12 @@
 }
 
 .tasks .task-created {
-    display: none !important;
+    display: none;
     background-color: white;
     border: 0;
-    width: 185px;
+    width: 175px;
     height: 50px;
     color: black;
-    display: flex;
     border-radius: 10px;
     z-index: 1;
     position: fixed;
@@ -252,13 +261,12 @@
 }
 
 .tasks .task-deleted{
-    display: none !important;
+    display: none;
     background-color: white;
     border: 0;
     width: 165px;
     height: 50px;
     color: black;
-    display: flex;
     border-radius: 10px;
     z-index: 1;
     position: fixed;
