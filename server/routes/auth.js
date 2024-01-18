@@ -10,6 +10,7 @@ export const login = async(req,res) => {
             bcrypt.compare(password,user.password, function(err,exist) {
                 if(exist){
                     const data = {
+                        id: user._id,
                         email: user.email,
                     }
                     const token =  jwt.sign(data,'secret',{expiresIn: '1hr'});
@@ -23,17 +24,8 @@ export const login = async(req,res) => {
             res.status(404).json('User does not exist!');
         }
     } else {
-        res.status(401).json('All fields are mandatory');
+        res.status(400).json('All fields are mandatory');
     }
-
-
-     /* bcrypt.compare(password,newpassword, function(err,res) {
-        if(res){
-            console.log(res);
-        } else {
-            console.log(err);
-        }
-    }) */
 }
 
 export const register = async(req,res) => {
@@ -53,11 +45,21 @@ export const register = async(req,res) => {
             }
             const token =  jwt.sign(data,'secret',{expiresIn: '1hr'});
             console.log('New User Created');
-            res.cookie("accessToken",token).status(201).json('User created');
+            res.cookie("accessToken",token).status(201).json(data);
         } else {
-            res.status(401).json('Error');
+            res.status(400).json('Error');
         }
     } else {
-        res.status(401).json('All fields are mandatory');
+        res.status(400).json('All fields are mandatory');
+    }
+}
+
+export const getUser = async(req,res) => {
+    const {email} = req.body;
+    const user = await User.findOne({email});
+    if(user){
+        res.status(200).json(user);
+    } else {
+        res.status(400).json('User does not exist!');
     }
 }
