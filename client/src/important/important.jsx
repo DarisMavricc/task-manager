@@ -186,7 +186,7 @@ export const Important = () => {
                                 <p>{task?.bio}</p>
                                 <p className='date'>{task?.date}</p>
                                 <div className="buttons">
-                                    <button onClick={() => updateTask(task)} className={task?.completed ? 'complete' : 'incomplete'}>{task?.completed ? 'Completed' : 'Incompleted'}</button>
+                                    <button onClick={() => updateTask(task)} className={task?.completed ? 'complete' : 'incomplete'}>{task?.completed ? 'Completed' : 'Incomplete'}</button>
                                     <button onClick={() => deleteTask(task)}className='delete'><MdDelete/></button>
                                     <button onClick={() => changeTask(task)} className='edit'><CiEdit/></button>
                                 </div>
