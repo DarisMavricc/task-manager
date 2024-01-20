@@ -2,7 +2,6 @@ import Task from "../models/taskModel.js";
 
 export const addTask = async(req,res) => {
     const {email,name,bio,date,important,completed} = req.body;
-    console.log(email,name,bio,date,important,completed);
     if(email && name && bio && date){
         const task = await Task.create({
             email: email,

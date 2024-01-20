@@ -44,7 +44,6 @@ export const register = async(req,res) => {
                 email: user.email,
             }
             const token =  jwt.sign(data,'secret',{expiresIn: '1hr'});
-            console.log('New User Created');
             res.cookie("accessToken",token).status(201).json(data);
         } else {
             res.status(400).json('Error');
