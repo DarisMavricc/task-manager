@@ -44,6 +44,36 @@ export const updateTask = async(req,res) => {
     
 } 
 
+export const editTask = async(req,res) => {
+
+    const {id,email,name,bio,date,important,completed} = req.body;
+    if(email && name && bio && date) {
+        const task = await Task.findById(id);
+        if(task){
+            const filter = { _id: id };
+            const update = {
+                name: name,
+                bio: bio,
+                date: date,
+                important: important,
+                completed: completed,
+            }
+            try {
+                await Task.findOneAndUpdate(filter,update);
+            }catch(err){
+                return res.status(400).json('Error');
+            }
+            return res.status(200).json('Updated');
+        } else {
+            return res.status(400).json('Task not found!');
+        }
+    }else {
+        return res.status(400).json('You should fill all fields!');
+    }
+    
+    
+} 
+
 
 export const deleteTask = async(req,res) => {
 
