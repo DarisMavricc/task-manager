@@ -63,3 +63,8 @@ export const getUser = async(req,res) => {
         res.status(400).json('User does not exist!');
     }
 }
+
+export const logout = (req,res) => {
+    res.clearCookie('accessToken');
+    return res.status(200).json("Cookies deleted");
+}
