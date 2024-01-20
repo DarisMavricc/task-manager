@@ -16,6 +16,7 @@ export const Incomplete = () => {
     const [completed,setCompleted] = useState(false);
     const [important,setImportant] = useState(false);
     const [err,setErr] = useState(null);
+    const [id,setId] = useState(null);
 
     const {currentUser} = useContext(AuthContext);
 
@@ -56,6 +57,17 @@ export const Incomplete = () => {
         }
       })
 
+      const EditTask = useMutation({
+        mutationFn: async(task) => {
+            await axios.post("http://localhost:8080/api/tasks/editTask", task, {
+                withCredentials: true,
+            });
+        },
+        onSuccess: ()=> {
+            return queryClient.invalidateQueries(["tasks"]);
+        }
+      })
+
 
     const addTask = () => {
         document.querySelector('.new-task').style.display = 'block';
@@ -63,6 +75,10 @@ export const Incomplete = () => {
 
     const closeTask = () => {
         document.querySelector('.new-task').style.display = 'none';
+    }
+
+    const closeEditTask = () => {
+        document.querySelector('.edit-task').style.display = 'none';
     }
 
     const createTask = async() => {
@@ -91,8 +107,6 @@ export const Incomplete = () => {
     }
 
     const updateTask = async(e) => {
-        /* e.target.style.backgroundColor = 'red';
-        e.target.innerText = 'Incomplete'; */
         const changes = {
             id: e._id,
         }
@@ -106,6 +120,40 @@ export const Incomplete = () => {
         }catch(err){
             console.log(err);
         }
+    }
+
+    const editTask = () => {
+
+        const newTitle = document.querySelector('#edit-task-title').value;
+        const newBio = document.querySelector('#edit-task-bio').value;
+        const newDate = document.querySelector('#edit-task-date').value
+        const newCompleted = document.querySelector('.edit-task-completed').checked;
+        const newImportant = document.querySelector('.edit-task-important').checked;
+            const task = {
+                id: id,
+                email: currentUser?.email,
+                name: newTitle,
+                bio: newBio,
+                date: newDate,
+                important: newImportant,
+                completed: newCompleted
+            }
+            try {
+                EditTask.mutate(task);
+            }catch(err){
+                console.log(err);
+            }
+            document.querySelector('.edit-task').style.display = 'none';
+    }
+
+    const changeTask = (task) => {
+        setId(task._id);
+        document.querySelector('.edit-task').style.display = 'block';
+        document.querySelector('#edit-task-title').value = task.name;
+        document.querySelector('#edit-task-bio').value = task.bio;
+        document.querySelector('#edit-task-date').value = task.date;
+        document.querySelector('.edit-task-completed').checked = task.completed;
+        document.querySelector('.edit-task-important').checked = task.important;
     }
 
     const DeleteTask = async(e) => {
@@ -138,8 +186,8 @@ export const Incomplete = () => {
                                 <p className='date'>{task?.date}</p>
                                 <div className="buttons">
                                 <button onClick={() => updateTask(task)} className={task?.completed ? 'complete' : 'incomplete'}>{task?.completed ? 'Completed' : 'Incompleted'}</button>
-                                    <button onClick={() => DeleteTask(task)}className='delete'><MdDelete/></button>
-                                    <button className='edit'><CiEdit/></button>
+                                    <button onClick={() => DeleteTask(task)} className='delete'><MdDelete/></button>
+                                    <button onClick={() => changeTask(task)} className='edit'><CiEdit/></button>
                                 </div>
                         </div>
                     )
@@ -168,6 +216,30 @@ export const Incomplete = () => {
                         </div>
                     </div>
                     <button class="create-task-btn" onClick={(e) => createTask()}>+ Create Task</button>
+                </div>
+            </div>
+            <div className="edit-task">
+                <div className="task-elements">
+                    <button class="closeTask" onClick={closeEditTask}>X</button>
+                    <h1>Edit task</h1>
+                    {err && <p style={{marginTop: '2px',marginBottom: '5px',color: 'red'}}>{err}</p>}<br/>
+                    <label for="Title">Title</label>
+                    <input type="text" id="edit-task-title"/>
+                    <label for="Description">Description</label>
+                    <textarea class="description" id="edit-task-bio"/>
+                    <label for="Date">Date</label>
+                    <input type="date" id="edit-task-date"/>
+                    <div className="toggle">
+                        <div className="toggle-completed">
+                            <p>Toggle Completed</p>
+                            <input type="checkbox" className="edit-task-completed"/>
+                        </div>
+                        <div className="toggle-important">
+                            <p>Toggle Important</p>
+                            <input type="checkbox" className="edit-task-important"/>
+                        </div>
+                    </div>
+                    <button class="create-task-btn" onClick={() => editTask()}>+ Edit Task</button>
                 </div>
             </div>
             <div className="alert">
