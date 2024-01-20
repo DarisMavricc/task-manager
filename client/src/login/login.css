@@ -36,6 +36,10 @@
     padding-top: 20px;
 }
 
+a {
+    color: #0E87CC;
+}
+
 .login input {
     height: 30px;
     font-size: 20px;
