@@ -8,7 +8,7 @@ export const Logout = () => {
     const {currentUser,setCurrentUser} = useContext(AuthContext);
 
     useEffect(() => {
-        const deleteCookie = axios.post('http://localhost:8080/api/logout',{ withCredentials: true });
+        const deleteCookie = axios.get('http://localhost:8080/api/logout',{ withCredentials: true });
         if(deleteCookie) {
             localStorage.clear();
         }

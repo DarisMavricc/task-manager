@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa";
 import { CiCircleAlert } from "react-icons/ci";
 import { MdAssignment } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/Auth';
 import { useContext, useEffect, useState } from 'react';
 import {useQuery} from '@tanstack/react-query'
@@ -16,8 +16,16 @@ export const Sidebar = () => {
 
     const {currentUser} = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(currentUser === null || !currentUser){
+            navigate('/login');
+        }
+    })
+
     const email = {
-        email: currentUser.email
+        email: currentUser?.email
     }
 
     const {data,isLoading} = useQuery({
@@ -33,7 +41,7 @@ export const Sidebar = () => {
                     <img src={icon} alt="" />
                 </div>
                 <div className="name">
-                    <h1>{data?.last_name} {data?.last_name}</h1>
+                    <h1>{data?.first_name} {data?.last_name}</h1>
                 </div>
             </div>
             <div className="buttons">
